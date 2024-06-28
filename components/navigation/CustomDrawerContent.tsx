@@ -3,9 +3,13 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Pressable, Text, View } from 'react-native';
 import { router } from 'expo-router';
 import React from 'react';
+import { Colors } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 
 export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   const { bottom } = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
+  const textColor = colorScheme ? Colors?.[colorScheme]?.text : '#11181C'; // получаем цвет текста в зависимости от темы
 
   const closeDrawer = ()=>{
     props.navigation?.closeDrawer();
@@ -16,7 +20,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
       <DrawerContentScrollView {...props}>
         <DrawerItem
           label={() => (
-            <Text>Home</Text>
+            <Text style={{ color: textColor }}>Home</Text>
           )}
           onPress={() => {
             closeDrawer();
@@ -26,7 +30,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
 
         <DrawerItem
           label={() => (
-            <Text>Settings</Text>
+            <Text style={{ color: textColor }}>Settings</Text>
           )}
           onPress={() => {
             closeDrawer();
@@ -36,7 +40,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
 
         <DrawerItem
           label={() => (
-            <Text>Notifications</Text>
+            <Text style={{ color: textColor }}>Notifications</Text>
           )}
           onPress={() => {
             closeDrawer();
@@ -46,7 +50,7 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
       </DrawerContentScrollView>
 
       <Pressable onPress={closeDrawer} style={{ padding: 20, paddingBottom: bottom+10}}>
-        <Text>Logout</Text>
+        <Text style={{ color: textColor }}>Logout</Text>
       </Pressable>
     </View>
   );

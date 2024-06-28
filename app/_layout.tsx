@@ -28,7 +28,7 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
-  useNotificationObserver();
+  const { expoPushToken } = useNotificationObserver();
 
   useEffect(() => {
     if (loaded) {
@@ -58,6 +58,7 @@ export default function RootLayout() {
               headerShown: true,
               headerTransparent: true,
             }}
+            initialParams={{ titleText: 'Some title', token: expoPushToken }}
           />
 
           <Drawer.Screen
