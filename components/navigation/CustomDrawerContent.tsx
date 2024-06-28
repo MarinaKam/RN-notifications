@@ -33,6 +33,16 @@ export const CustomDrawerContent = (props: DrawerContentComponentProps) => {
             router.push("/(tabs)/settings");
           }}
         />
+
+        <DrawerItem
+          label={() => (
+            <Text>Notifications</Text>
+          )}
+          onPress={() => {
+            closeDrawer();
+            router.push("/notifications");
+          }}
+        />
       </DrawerContentScrollView>
 
       <Pressable onPress={closeDrawer} style={{ padding: 20, paddingBottom: bottom+10}}>
